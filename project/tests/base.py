@@ -1,6 +1,7 @@
 # project/server/tests/base.py
 
-
+import werkzeug
+werkzeug.cached_property = werkzeug.utils.cached_property
 from flask_testing import TestCase
 
 from project.server import app, db

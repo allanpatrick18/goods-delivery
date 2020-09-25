@@ -7,6 +7,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from time import time
 
+
 app = Flask(__name__)
 
 app_settings = os.getenv(
@@ -33,21 +34,21 @@ conn = Neo4jConnection(app.config['DB_URI'], app.config['DB_USER'],
 #             (b)-[:ROAD {cost:50}]->(e),
 #             (d)-[:ROAD {cost:30}]->(e)
 #        """
-#
+
 # shortestPath = conn.query(routes)
-cqlShorestPath = """MATCH (start:Loc{name:"A"}), (end:Loc{name:"D"})
-                    CALL algo.shortestPath.stream(start, end, "cost")
-                    YIELD nodeId, cost
-                    MATCH (other:Loc) WHERE id(other) = nodeId
-                    RETURN other.name AS name, cost"""
-
-
-shortestPath = conn.query(cqlShorestPath)
-total = 0
-for record in shortestPath:
-    total += record['cost']
-    print(record)
-print(total*(2.5/10))
+# cqlShorestPath = """MATCH (start:Loc{name:"A"}), (end:Loc{name:"D"})
+#                     CALL algo.shortestPath.stream(start, end, "cost")
+#                     YIELD nodeId, cost
+#                     MATCH (other:Loc) WHERE id(other) = nodeId
+#                     RETURN other.name AS name, cost"""
+#
+#
+# shortestPath = conn.query(cqlShorestPath)
+# total = 0
+# for record in shortestPath:
+#     total += record['cost']
+#     print(record)
+# print(total*(2.5/10))
 start_time = int(time())
 
 from project.server.health_check.health_check import health_check_blueprint

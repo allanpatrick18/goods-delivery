@@ -9,9 +9,9 @@ migrate = Migrate(app, db)
 
 
 # uri = "bolt://localhost:7687"
-# driver = GraphDatabase.driver(uri, auth=("test", "123mudar"))
+# driver = GraphDatabase.driver(uri, auth=("tests", "123mudar"))
 
-# conn = Neo4jConnection(uri,"test", "123mudar" )
+# conn = Neo4jConnection(uri,"tests", "123mudar" )
 
 def create_friend_of(tx, name, friend):
 
